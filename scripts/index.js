@@ -13,9 +13,9 @@ function makeid(length) {
 }
 
 async function init(name, fda, fdb, cdrom, hda, hdb, ram, vram) {
-    const v86Wasm = await fetchFileAsynchronously(process.cwd() + '/node_modules/v86/build/v86.wasm')
-    const bios = await fetchFileAsynchronously(process.cwd() + '/node_modules/v86/bios/seabios.bin')
-    const vgabios = await fetchFileAsynchronously(process.cwd() + '/node_modules/v86/bios/vgabios.bin')
+    const v86Wasm = await fetchFileAsynchronously(app.getAppPath() + '/node_modules/v86/build/v86.wasm')
+    const bios = await fetchFileAsynchronously(app.getAppPath() + '/node_modules/v86/bios/seabios.bin')
+    const vgabios = await fetchFileAsynchronously(app.getAppPath() + '/node_modules/v86/bios/vgabios.bin')
     const tabID = makeid(256)
 
     let vmbtn = document.createElement('button')
