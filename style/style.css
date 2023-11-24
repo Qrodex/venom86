@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Inter;
+    box-sizing: border-box;
+    color: white;
+    transition: all 0.5s ease;
+    outline: none;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url('inter.ttf');
+}
+
+body,
+html {
+    overflow: hidden;
+    background-image: url('https://source.unsplash.com/1600x900/?landscape');
+}
+
+section {
+    background: #1d1d1ddd;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    float: right;
+    width: calc(100vw - 20vw - 50px);
+    height: 100vh;
+    overflow: auto;
+}
+
+#manageVM {
+    float: left;
+    width: 25vw;
+    height: 100vh;
+}
+
+#navbtn {
+    padding: 5px;
+    background: #3d3d3d;
+    height: 100vh;
+    box-sizing: border-box;
+    width: 50px;
+    float: left;
+}
+
+.sidebar {
+    height: 100vh;
+    background: #2d2d2d;
+    width: 20vw;
+    float: left;
+    box-sizing: border-box;
+    overflow: auto;
+    border: #3d3d3d solid 1px;
+}
+
+/* ---------------------------------------------- */
+
+#navbtn button {
+    background: none;
+    border: none;
+    width: 100%;
+    height: 40px;
+    font-size: 100%;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+
+#navbtn button i {
+    color: gray;
+}
+
+#navbtn button:hover i {
+    color: #adadad;
+}
+
+.active {
+    background: #4d4d4d !important;
+}
+
+details,
+.qroui-button {
+    background: #3d3d3d;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    width: calc(100% - 40px);
+    margin: 20px;
+    margin-bottom: 0;
+}
+
+#manageVM hr {
+    border: #3d3d3d solid 1px;
+    margin: 5px;
+}
+
+.vmtabcontent span {
+    font-family: monospace;
+}
+
+.vmtabcontent {
+    height: 100vh;
+    place-items: center;
+}
+
+.centered {
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+
+.vmitem {
+    background: #2d2d2d;
+    padding: 15px;
+    border-radius: 5px;
+    border: #3d3d3d solid 1px;
+}
+
+fieldset {
+    background: none;
+    border: #3d3d3d dashed 2px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+    color: #3d3d3d;
+    padding-top: 3px;
+    margin: 5px;
+}
+
+input {
+    background: none;
+    border: none;
+    padding: none;
+    width: 100%;
+}
+
+legend {
+    color: #6d6d6d;
+}
+
+#configleft {
+    display: inline-block;
+    width: calc(50% - 5px);
+}
+
+#configright {
+    display: inline-block;
+    width: 50%;
+}
+
+#vmcontrols button {
+    background: none;
+    border: #3d3d3d dashed 2px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+fieldset:hover, #vmcontrols button:hover {
+    border:#6d6d6d dashed 2px;
+}
+
+#terminal {
+    background: black;
+    resize: none;
+    font-family: monospace;
+}

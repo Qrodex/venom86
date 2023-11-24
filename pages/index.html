@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venom86</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <script src="../scripts/vmmanagement.js" defer></script>
+    <script src="../scripts/index.js" defer></script>
+    <script src="../scripts/tabs.js" defer></script>
+    <script src="https://kit.fontawesome.com/970a0290cd.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="navbtn" class="tab">
+        <button title="Home" class="tablinks active" onclick="openTab(event, 'home')">
+            <i class="fa fa-home" aria-hidden="true"></i>
+        </button>
+        <button title="My Virtual Machines" id="myvmsbtn" class="tablinks" onclick="openTab(event, 'vms')">
+            <i class="fa-solid fa-computer" aria-hidden="true"></i>
+        </button>
+        <button title="About" class="tablinks" onclick="openTab(event, 'about')">
+            <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <div id="home" class="tabcontent">
+        <div class="sidebar" id="myvms"></div>
+        <section id="vmdetails" class="centered">
+            <div id="vmdetail" style="display: none;">
+                <div class="vmitem" id="vmcontrols">
+
+                </div>
+                <br>
+                <div class="vmitem" id="vmconfig">
+                    <div id="configleft">
+
+                    </div>
+                    <div id="configright">
+
+                    </div>
+                    <div id="drives">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="vms" class="tabcontent">
+        <div class="sidebar" id="runningvms">
+            <button class="qroui-button vmtablinks" onclick="openvm(event, 'serial')">Serial</button>
+        </div>
+        <section id="previews">
+            <div class="vmtabcontent" id="serial" style="display: none;">
+                <textarea readonly rows=25 cols=60 id="terminal"></textarea>
+            </div>
+        </section>
+    </div>
+
+    <div id="about" class="tabcontent">
+        <div class="sidebar">
+            <button class="qroui-button">About</button>
+        </div>
+        <section class="centered">
+            <div class="vmitem">
+                <h1>venom86</h1>
+                <br>
+                &copy; 2023 Qrodex
+                <br>
+                Version 1.0
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
