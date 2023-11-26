@@ -34,15 +34,9 @@
                 </div>
                 <br>
                 <div class="vmitem" id="vmconfig">
-                    <div id="configleft">
-
-                    </div>
-                    <div id="configright">
-
-                    </div>
-                    <div id="drives">
-
-                    </div>
+                    <div id="configleft"></div>
+                    <div id="configright"></div>
+                    <div id="drives"></div>
                 </div>
             </div>
         </section>
@@ -56,6 +50,13 @@
             <div class="vmtabcontent" id="serial" style="display: none;">
                 <textarea readonly rows=25 cols=60 id="terminal"></textarea>
             </div>
+            <div class="vmtabcontent centered">
+                <div class="vmitem">
+                    <h1>No virtual machines running!</h1>
+                    <br>
+                    Set up a fresh virtual machine and initiate its operation to access and view it right here.
+                </div>
+            </div>
         </section>
     </div>
 
@@ -65,11 +66,14 @@
         </div>
         <section class="centered">
             <div class="vmitem">
+                <img src="../style/icon.png" class="logo">
+                <br><br>
                 <h1>venom86</h1>
+                <p>x86 Emulation by Qrodex</p>
                 <br>
-                &copy; 2023 Qrodex
+                &copy;2023 Qrodex
                 <br>
-                Version 1.0
+                Version <span id="version"></span>
             </div>
         </section>
     </div>

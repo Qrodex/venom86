@@ -5,6 +5,7 @@ const remote = require('@electron/remote');
 const app = remote.app;
 const configDir = app.getPath('userData');
 const { ipcRenderer } = require('electron');
+document.getElementById('version').innerText = app.getVersion()
 var myvms
 
 async function fetchFileAsynchronously(filePath) {
@@ -120,28 +121,32 @@ function loadvms() {
             let startbutton = document.createElement('button')
             startbutton.innerText = 'Start'
             startbutton.onclick = async function () {
-                if (thiselem.fda) {
-                    mystorages.fda = await fetchFileAsynchronously(thiselem.fda)
-                } else if (thiselem.fdb) {
-                    mystorages.fdb = await fetchFileAsynchronously(thiselem.fdb)
-                } else if (thiselem.hda) {
-                    mystorages.hda = await fetchFileAsynchronously(thiselem.hda)
-                } else if (thiselem.hdb) {
-                    mystorages.hdb = await fetchFileAsynchronously(thiselem.hdb)
-                } else if (thiselem.cdrom) {
-                    mystorages.cdrom = await fetchFileAsynchronously(thiselem.cdrom)
-                }
+                try {
+                    if (thiselem.fda) {
+                        mystorages.fda = await fetchFileAsynchronously(thiselem.fda)
+                    } else if (thiselem.fdb) {
+                        mystorages.fdb = await fetchFileAsynchronously(thiselem.fdb)
+                    } else if (thiselem.hda) {
+                        mystorages.hda = await fetchFileAsynchronously(thiselem.hda)
+                    } else if (thiselem.hdb) {
+                        mystorages.hdb = await fetchFileAsynchronously(thiselem.hdb)
+                    } else if (thiselem.cdrom) {
+                        mystorages.cdrom = await fetchFileAsynchronously(thiselem.cdrom)
+                    }
 
-                init(
-                    thiselem.name,
-                    mystorages.fda,
-                    mystorages.fdb,
-                    mystorages.cdrom,
-                    mystorages.hda,
-                    mystorages.hdb,
-                    thiselem.ram,
-                    thiselem.vram
-                )
+                    init(
+                        thiselem.name,
+                        mystorages.fda,
+                        mystorages.fdb,
+                        mystorages.cdrom,
+                        mystorages.hda,
+                        mystorages.hdb,
+                        thiselem.ram,
+                        thiselem.vram
+                    )
+                } catch (error) {
+                    window.alert(error)
+                }
             }
             document.getElementById('vmcontrols').prepend(startbutton)
 
@@ -257,7 +262,7 @@ function loadvms() {
         }
         document.getElementById('myvms').appendChild(vmbtn)
 
-        if (index == 0) {
+        if (index == 0 && document.getElementById('configleft').innerHTML === "") {
             vmbtn.click()
         }
     });

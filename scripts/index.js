@@ -17,6 +17,7 @@ async function init(name, fda, fdb, cdrom, hda, hdb, ram, vram) {
     const bios = await fetchFileAsynchronously(app.getAppPath() + '/node_modules/v86/bios/seabios.bin')
     const vgabios = await fetchFileAsynchronously(app.getAppPath() + '/node_modules/v86/bios/vgabios.bin')
     const tabID = makeid(256)
+    const contID = makeid(256)
 
     let vmbtn = document.createElement('button')
     vmbtn.className = 'qroui-button vmtablinks'
@@ -30,10 +31,17 @@ async function init(name, fda, fdb, cdrom, hda, hdb, ram, vram) {
     preview.className = `vmtabcontent`
     preview.id = tabID
     preview.innerHTML = `
-        <div style="white-space: pre; font: 14px monospace; line-height: 14px"></div>
-        <canvas style="display: none"></canvas>
+        <container id="${contID}">
+            <div style="white-space: pre; font: 14px monospace; line-height: 14px"></div>
+            <canvas style="display: none"></canvas>
+            <br>
+        </container>
     `
     document.getElementById('previews').appendChild(preview)
+
+    let controls = document.createElement('div')
+    controls.className = 'vmitem'
+    document.getElementById(contID).appendChild(controls)
 
     DEBUG = false
     const vm = new V86Starter.V86Starter({
@@ -60,9 +68,44 @@ async function init(name, fda, fdb, cdrom, hda, hdb, ram, vram) {
     let stopvm
     let stopvmbtn = document.createElement('button')
     stopvmbtn.innerText = 'Stop'
-    preview.appendChild(stopvmbtn)
+    controls.appendChild(stopvmbtn)
     stopvmbtn.onclick = function () {
         stopvm = true
+    }
+
+    let restartbtn = document.createElement('button')
+    restartbtn.innerText = 'Restart'
+    controls.appendChild(restartbtn)
+    restartbtn.onclick = function () {
+        vm.restart()
+    }
+
+    let lockmousebtn = document.createElement('button')
+    lockmousebtn.innerText = 'Lock mouse'
+    controls.appendChild(lockmousebtn)
+    lockmousebtn.onclick = function () {
+        vm.lock_mouse()
+    }
+
+    let screenshotbtn = document.createElement('button')
+    screenshotbtn.innerText = 'Screenshot'
+    controls.appendChild(screenshotbtn)
+    screenshotbtn.onclick = function () {
+        vm.screen_make_screenshot()
+    }
+
+    let alttabbtn = document.createElement('button')
+    alttabbtn.innerText = 'Send Alt+Tab'
+    controls.appendChild(alttabbtn)
+    alttabbtn.onclick = function (e) {
+        vm.keyboard_send_keys([18, 9])
+    }
+
+    let cadbtn = document.createElement('button')
+    cadbtn.innerText = 'Send Ctrl+Alt+Del'
+    controls.appendChild(cadbtn)
+    cadbtn.onclick = function (e) {
+        vm.keyboard_send_keys([17, 18, 46])
     }
 
     let vmloop

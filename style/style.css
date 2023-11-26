@@ -27,6 +27,7 @@ section {
     width: calc(100vw - 20vw - 50px);
     height: 100vh;
     overflow: auto;
+    transition: none;
 }
 
 #manageVM {
@@ -42,6 +43,7 @@ section {
     box-sizing: border-box;
     width: 50px;
     float: left;
+    transition: none;
 }
 
 .sidebar {
@@ -52,6 +54,7 @@ section {
     box-sizing: border-box;
     overflow: auto;
     border: #3d3d3d solid 1px;
+    transition: none;
 }
 
 /* ---------------------------------------------- */
@@ -113,7 +116,7 @@ details,
 
 .vmitem {
     background: #2d2d2d;
-    padding: 15px;
+    padding: 20px;
     border-radius: 5px;
     border: #3d3d3d solid 1px;
 }
@@ -150,7 +153,7 @@ legend {
     width: 50%;
 }
 
-#vmcontrols button {
+.vmitem button {
     background: none;
     border: #3d3d3d dashed 2px;
     padding: 10px;
@@ -159,7 +162,7 @@ legend {
     cursor: pointer;
 }
 
-fieldset:hover, #vmcontrols button:hover {
+fieldset:hover, .vmitem button:hover {
     border:#6d6d6d dashed 2px;
 }
 
@@ -167,4 +170,12 @@ fieldset:hover, #vmcontrols button:hover {
     background: black;
     resize: none;
     font-family: monospace;
+}
+
+.logo {
+    width: 15vw;
+}
+
+canvas {
+    margin: auto;
 }
