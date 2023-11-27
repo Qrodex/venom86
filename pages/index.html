@@ -23,6 +23,9 @@
         <button title="About" class="tablinks" onclick="openTab(event, 'about')">
             <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
         </button>
+        <button title="Toggle Sidebar" id="togglesidebarbtn" class="active" onclick="togglesidebar()">
+            <i class="fa-regular fa-square-caret-left" aria-hidden="true"></i>
+        </button>
     </div>
 
     <div id="home" class="tabcontent">
@@ -50,7 +53,7 @@
             <div class="vmtabcontent" id="serial" style="display: none;">
                 <textarea readonly rows=25 cols=60 id="terminal"></textarea>
             </div>
-            <div class="vmtabcontent centered">
+            <div class="vmtabcontent centered" id="novm">
                 <div class="vmitem">
                     <h1>No virtual machines running!</h1>
                     <br>
@@ -62,9 +65,10 @@
 
     <div id="about" class="tabcontent">
         <div class="sidebar">
-            <button class="qroui-button">About</button>
+            <button class="qroui-button active attrtablinks" onclick="openattr(event, 'versiontab')">About</button>
+            <button class="qroui-button attrtablinks" onclick="openattr(event, 'v86attr')">v86-module license</button>
         </div>
-        <section class="centered">
+        <section class="centered attrtabcontent" id="versiontab">
             <div class="vmitem">
                 <img src="../style/icon.png" class="logo">
                 <br><br>
@@ -74,6 +78,34 @@
                 &copy;2023 Qrodex
                 <br>
                 Version <span id="version"></span>
+            </div>
+        </section>
+        <section class="centered attrtabcontent" id="v86attr" style="display: none;">
+            <div class="vmitem">
+                <pre>
+Copyright (c) 2012, The v86 contributors
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                </pre>
             </div>
         </section>
     </div>

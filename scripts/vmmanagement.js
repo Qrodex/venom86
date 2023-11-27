@@ -100,7 +100,7 @@ function loadvms() {
         let mystorages = {}
 
         let vmbtn = document.createElement('button')
-        vmbtn.className = 'qroui-button vmtablinks'
+        vmbtn.className = 'qroui-button'
         vmbtn.innerHTML = thiselem.name
 
         vmbtn.onclick = async function (event) {

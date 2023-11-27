@@ -114,6 +114,13 @@ async function init(name, fda, fdb, cdrom, hda, hdb, ram, vram) {
             clearInterval(vmloop)
             vmbtn.remove()
             preview.remove()
+
+            if (document.getElementsByClassName("vmtablinks").length == 1) {
+                document.getElementById('novm').style.display = 'grid'
+            } else {
+                document.getElementsByClassName("vmtablinks")[1].click()
+            }
+
             await vm.destroy()
         } else {
             if (document.getElementById('myvmsbtn').classList.contains('active')) {
