@@ -39,7 +39,7 @@ async function init(name, fda, fdb, cdrom, hda, hdb, ram, vram) {
     `
     document.getElementById('previews').appendChild(preview)
 
-    let controls = document.createElement('div')
+    let controls = document.createElement('footer')
     controls.className = 'vmitem'
     document.getElementById(contID).appendChild(controls)
 
@@ -98,14 +98,35 @@ async function init(name, fda, fdb, cdrom, hda, hdb, ram, vram) {
     alttabbtn.innerText = 'Send Alt+Tab'
     controls.appendChild(alttabbtn)
     alttabbtn.onclick = function (e) {
-        vm.keyboard_send_keys([18, 9])
+        vm.keyboard_send_scancodes([
+            0x38 | 0x80,
+            0x0F | 0x80,
+        ]);
     }
 
     let cadbtn = document.createElement('button')
     cadbtn.innerText = 'Send Ctrl+Alt+Del'
     controls.appendChild(cadbtn)
     cadbtn.onclick = function (e) {
-        vm.keyboard_send_keys([17, 18, 46])
+        vm.keyboard_send_scancodes([
+            0x1D, // ctrl
+            0x38, // alt
+            0x53, // delete
+
+            // break codes
+            0x1D | 0x80,
+            0x38 | 0x80,
+            0x53 | 0x80,
+        ]);
+    }
+
+    let scaleinput = document.createElement('input')
+    scaleinput.value = 1.0
+    scaleinput.type = 'number'
+    scaleinput.step = 0.25
+    controls.appendChild(scaleinput)
+    scaleinput.onchange = function (e) {
+        vm.screen_set_scale(scaleinput.value, scaleinput.value)
     }
 
     let vmloop

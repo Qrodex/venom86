@@ -1,6 +1,6 @@
 {
   "name": "venom86",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "x86 Emulation by Qrodex",
   "main": "index.js",
   "scripts": {

@@ -128,6 +128,16 @@ details,
     border: #3d3d3d solid 1px;
 }
 
+footer {
+    width: fit-content;
+}
+
+container div {
+    text-align: center;
+    height: fit-content !important;
+    width: 100% !important;
+}
+
 fieldset {
     background: none;
     border: #3d3d3d dashed 2px;
@@ -160,16 +170,21 @@ legend {
     width: 50%;
 }
 
-.vmitem button {
+.vmitem button, container input {
     background: none;
     border: #3d3d3d dashed 2px;
     padding: 10px;
     border-radius: 5px;
     margin: 5px;
     cursor: pointer;
+    width: fit-content;
 }
 
-fieldset:hover, .vmitem button:hover {
+container input {
+    width: 75px;
+}
+
+fieldset:hover, .vmitem button:hover, container input:hover {
     border:#6d6d6d dashed 2px;
 }
 
