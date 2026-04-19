@@ -1,6 +1,6 @@
 {
   "name": "venom86",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "x86 Emulation by Qrodex",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "dependencies": {
     "@electron/remote": "^2.1.0",
     "electron-updater": "^6.1.4",
-    "v86": "^0.4.0"
+    "v86": "^0.5.11"
   },
   "devDependencies": {
     "electron": "^25.4.0",

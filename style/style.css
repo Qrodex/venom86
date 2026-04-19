@@ -113,6 +113,10 @@ details,
 .vmtabcontent {
     height: 100vh;
     place-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .centered {
@@ -129,7 +133,7 @@ details,
 }
 
 footer {
-    width: fit-content;
+    padding: 0px !important;
 }
 
 container div {

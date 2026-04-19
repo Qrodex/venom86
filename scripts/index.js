@@ -14,8 +14,8 @@ function makeid(length) {
 
 async function init(name, fda, fdb, cdrom, hda, hdb, ram, vram) {
     const v86Wasm = await fetchFileAsynchronously(app.getAppPath() + '/node_modules/v86/build/v86.wasm')
-    const bios = await fetchFileAsynchronously(app.getAppPath() + '/node_modules/v86/bios/seabios.bin')
-    const vgabios = await fetchFileAsynchronously(app.getAppPath() + '/node_modules/v86/bios/vgabios.bin')
+    const bios = await fetchFileAsynchronously(app.getAppPath() + '/bios/seabios.bin')
+    const vgabios = await fetchFileAsynchronously(app.getAppPath() + '/bios/vgabios.bin')
     const tabID = makeid(256)
     const contID = makeid(256)
 
@@ -33,18 +33,19 @@ async function init(name, fda, fdb, cdrom, hda, hdb, ram, vram) {
     preview.innerHTML = `
         <container id="${contID}">
             <div style="white-space: pre; font: 14px monospace; line-height: 14px"></div>
-            <canvas style="display: none"></canvas>
+            <canvas style="display: none" id="canvas-${contID}"></canvas>
             <br>
         </container>
     `
-    document.getElementById('previews').appendChild(preview)
+    document.getElementById('previews').appendChild(preview);
 
     let controls = document.createElement('footer')
     controls.className = 'vmitem'
     document.getElementById(contID).appendChild(controls)
+    document.getElementById(`canvas-${contID}`).addEventListener('mousedown', () => vm.lock_mouse());
 
     DEBUG = false
-    const vm = new V86Starter.V86Starter({
+    const vm = new V86Starter.V86({
         wasm_fn: async (param) => (await WebAssembly.instantiate(await v86Wasm, param)).instance.exports,
         memory_size: ram * 1024 * 1024,
         vga_memory_size: vram * 1024 * 1024,
@@ -60,7 +61,7 @@ async function init(name, fda, fdb, cdrom, hda, hdb, ram, vram) {
     });
     console.log(vm)
 
-    vm.add_listener("serial0-output-char", function(char) {
+    vm.add_listener("serial0-output-char", function (char) {
         document.getElementById("terminal").value += char;
         return
     })
@@ -78,13 +79,6 @@ async function init(name, fda, fdb, cdrom, hda, hdb, ram, vram) {
     controls.appendChild(restartbtn)
     restartbtn.onclick = function () {
         vm.restart()
-    }
-
-    let lockmousebtn = document.createElement('button')
-    lockmousebtn.innerText = 'Lock mouse'
-    controls.appendChild(lockmousebtn)
-    lockmousebtn.onclick = function () {
-        vm.lock_mouse()
     }
 
     let screenshotbtn = document.createElement('button')
