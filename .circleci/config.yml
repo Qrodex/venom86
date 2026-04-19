@@ -3,18 +3,25 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: cimg/node:14.17.4
+      - image: cimg/base:current-18.04
     steps:
       - checkout
-      - run:
-          name: Install dependencies
-          command: npm i
       - run:
           name: Install dpkg and fakeroot
           command: |
             sudo apt-get update -y
             sudo dpkg --add-architecture i386 && sudo apt-get update -y
             sudo apt-get install -y dpkg fakeroot wine32 wine64 rpm
+      - run:
+          name: Install Node.js 16.20.2
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            node -v
+            npm -v
+      - run:
+          name: Install dependencies
+          command: npm i
       - run:
           name: Generate Builds
           command: npm run distCI
